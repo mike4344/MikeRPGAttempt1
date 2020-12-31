@@ -5,7 +5,7 @@ let rl = readline.createInterface({
     output: process.stdout
 });
 let enterName = () =>{
-    rl.question("What is your name Hero?", name =>{
+    rl.question("What is your name Hero? ", name =>{
         console.log(`Huzahh, ${name} has arrived`)
         chooseClass(name)
     })
@@ -14,13 +14,18 @@ let chooseClass = (name) =>{
     rl.question("Be you wizard, Be you rogue or Be you warrior", characterClass =>{
         if(characterClass === "wizard"){
             console.log(`ahhh ${name} the great mage welcome to my tavern`)
+            startJourney(name, characterClass)
         }else if(characterClass === "warrior"){
             console.log(`ahhh ${name} the mighty warrior welcome to my tavern`)
+            startJourney(name, characterClass)
         }else if(characterClass === "rogue"){
             console.log(`ahhh ${name} the sly rogue welcome to my tavern`)
-
+            startJourney(name, characterClass)
+        } else {
+            console.log("you are stupid now I will ask you one more time")
+            chooseClass(name)
         }
-        startJourney(name, characterClass)
+
     })
 }
 let startJourney = (name, characterClass) =>{
@@ -28,12 +33,15 @@ let startJourney = (name, characterClass) =>{
         if (didYouStart === "yes"){
             console.log(`thank you ${name} HEY EVERYONE ${name.toUpperCase()} WILL SAVE US !!!!!! `)
             startQuest(name, characterClass)
-        } else {
+        } else if(didYouStart === "no"){
             console.log(`well it looks like ${name} the stupid ${characterClass} doomed us all, *sarcastic* good job ${name} real hero over here`)
             rl.close()
+        } else {
+            console.log("please only yes or no answer we do not have time for this there is a dragon outside ")
+            startJourney(name, characterClass)
         }
     } )
-    rl.question("")
+
 }
 let startQuest = (name, characterClass) =>{
     console.log("*you go outside the tavern only to be confronted by the mighty frost dragon")
@@ -41,20 +49,26 @@ let startQuest = (name, characterClass) =>{
         if(isAnIdiot === "yes"){
             console.log(`${name} lost and in about 12 - 14 hours will be dragon poop, good job ${name} the poop`)
             rl.close()
-        } else {
+        } else if(isAnIdiot === 'no'){
             questStepOne(name, characterClass)
+        } else {
+            console.log("please only yes or no answer we do not have time for this there is a dragon about to eat you ")
+            startJourney(name, characterClass)
         }
     })
 }
 let questStepOne = (name, characterClass) =>{
     console.log(`good choice ${name} it would have been incredibly stupid to have just ran in like an idiot`)
-    rl.question("do you carefully devise a plan to kill the dragon?, yes/no", careful =>{
+    rl.question("do you carefully devise a plan to kill the dragon?, yes/no ", careful =>{
         if (careful === "yes"){
             console.log(`yayyyy ${name}, you did it, you used you ${characterClass} skills to kill the dragon`)
             questStepTwo(name, characterClass)
-        }else{
+        }else if(careful === 'no'){
             console.log("you is leastly smartyest person ever dragon does not want to eat you now because he does not want to gain your stewpid, you die of emarassment")
             rl.close()
+        } else {
+            console.log("please only yes or no answer we do not have time for this there is a dragon you are trying to kill ")
+            startJourney(name, characterClass)
         }
     })
 }
@@ -67,12 +81,14 @@ questStepTwo = (name, characterClass) =>{
 
             } else if(characterClass === "warrior"){
                 console.log(`${name}, the ${characterClass} runs headlong at the shadow dragon and stabs it in the right in the shadow heart`)
+            } else if(characterClass === "rogue"){
+                console.log(`${name} the ${characterClass} sneaks up on the dragon and say boo reallllly loud, the dragon cries and runs away defeated`)
             }
-            if(characterClass === "wizard")
 
             console.log(`${name} you are good ${characterClass} goodbye`)
+            rl.close()
         }
     })
 }
-enterName()
 
+enterName()
