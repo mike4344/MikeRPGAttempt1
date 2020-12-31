@@ -111,6 +111,7 @@ questStepTwo = (name, characterClass) =>{
             rl.close()
         } else {
             console.log("THIS IS NOT A TIME TO MESS THIS UP ONLY YES OR NO ANSWERS")
+            
             console.log("")
             questStepTwo(name, characterClass)
         }
