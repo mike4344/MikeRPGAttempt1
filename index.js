@@ -11,7 +11,7 @@ let enterName = () =>{
     })
 }
 let chooseClass = (name) =>{
-    rl.question("Be you wizard, Be you rogue or Be you warrior", characterClass =>{
+    rl.question("Be you wizard, Be you rogue or Be you warrior ", characterClass =>{
         if(characterClass === "wizard"){
             console.log(`ahhh ${name} the great mage welcome to my tavern`)
             startJourney(name, characterClass)
@@ -53,7 +53,7 @@ let startQuest = (name, characterClass) =>{
             questStepOne(name, characterClass)
         } else {
             console.log("please only yes or no answer we do not have time for this there is a dragon about to eat you ")
-            startJourney(name, characterClass)
+            startQuest(name, characterClass)
         }
     })
 }
@@ -68,14 +68,14 @@ let questStepOne = (name, characterClass) =>{
             rl.close()
         } else {
             console.log("please only yes or no answer we do not have time for this there is a dragon you are trying to kill ")
-            startJourney(name, characterClass)
+            questStepOne(name, characterClass)
         }
     })
 }
 questStepTwo = (name, characterClass) =>{
     console.log("you turn and walk away and just as you think you are safe out from the dragons chest burts a dragon of shadows and says 'haha mortal you have freed me from my vessel to bring 1000 years of darkness to the land ")
-    rl.question(`${name.toUpperCase()} WHAT DID YOU DO, so are you goin to use your ${characterClass} abilities or not!!!!`, useClass =>{
-        if(useClass === yes){
+    rl.question(`${name.toUpperCase()} WHAT DID YOU DO, so are you goin to use your ${characterClass} abilities or not!!!! yes/no `, useClass =>{
+        if(useClass === "yes"){
             if(characterClass === "wizard"){
                 console.log(`${name}, the ${characterClass} conjures up hudreds of light spears and hurls them at the shadow dragon ending him quickly`)
 
@@ -87,6 +87,12 @@ questStepTwo = (name, characterClass) =>{
 
             console.log(`${name} you are good ${characterClass} goodbye`)
             rl.close()
+        } else if (useClass === "no"){
+            console.log("instead of using your powers you go up and try to hug the dragon... it ... uhh... doesnt turnout well for you")
+            rl.close()
+        } else {
+            console.log("THIS IS NOT A TIME TO MESS THIS UP ONLY YES OR NO ANSWERS")
+            questStepTwo(name, characterClass)
         }
     })
 }
