@@ -90,14 +90,14 @@ let questStepOne = (name, characterClass) =>{
 }
 questStepTwo = (name, characterClass) =>{
     console.log("you turn and walk away and just as you think you are safe out from the dragons chest burts a dragon of shadows and says 'haha mortal you have freed me from my vessel to bring 1000 years of darkness to the land ")
-    rl.question(`${name.toUpperCase()} WHAT DID YOU DO, so are you goin to use your ${characterClass} abilities or not!!!! yes/no `, useClass =>{
+    rl.question(`${name.toUpperCase()} WHAT DID YOU DO, so are you going to use your ${characterClass} abilities or not!!!! yes/no `, useClass =>{
         if(useClass === "yes"){
             if(characterClass === "wizard"){
                 console.log(`${name}, the ${characterClass} conjures up hudreds of light spears and hurls them at the shadow dragon ending him quickly`)
                 console.log("")
 
             } else if(characterClass === "warrior"){
-                console.log(`${name}, the ${characterClass} runs headlong at the shadow dragon and stabs it in the right in the shadow heart`)
+                console.log(`${name}, the ${characterClass} runs headlong at the shadow dragon and stabs it right in the shadow heart`)
                 console.log("")
             } else if(characterClass === "rogue"){
                 console.log(`${name} the ${characterClass} sneaks up on the dragon and say boo reallllly loud, the dragon cries and runs away defeated`)
@@ -111,7 +111,7 @@ questStepTwo = (name, characterClass) =>{
             rl.close()
         } else {
             console.log("THIS IS NOT A TIME TO MESS THIS UP ONLY YES OR NO ANSWERS")
-            
+
             console.log("")
             questStepTwo(name, characterClass)
         }
